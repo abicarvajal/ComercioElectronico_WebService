@@ -65,3 +65,6 @@ C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioEle
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Course.ComercioElectronico.Infraestructura.pdb
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Humanizer.dll
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Newtonsoft.Json.dll

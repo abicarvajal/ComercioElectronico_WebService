@@ -16,6 +16,18 @@ namespace Course.ComercioElectronico.WebApi.Controllers
             this.productAplication = productAplication;
         }
 
+        [HttpPost]
+        public Task<Product> CreateAsync(Product product)
+        {
+            return productAplication.CreateAsync(product);
+        }
+
+        [HttpDelete]
+        public Task<bool> Delete(Product product)
+        {
+            return productAplication.Delete(product);
+        }
+
         [HttpGet]
         public Task<ICollection<Product>> GetAsync()
         {
@@ -26,6 +38,12 @@ namespace Course.ComercioElectronico.WebApi.Controllers
         public Task<Product> GetByIdAsync(Guid id)
         {
             return productAplication.GetByIdAsync(id);
+        }
+
+        [HttpPut]
+        public Task<Product> UpdateAsync(Product product)
+        {
+            return productAplication.UpdateAsync(product);
         }
     }
 }

@@ -27,5 +27,23 @@ namespace Course.ComercioElectronico.WebApi.Controllers
         {
             return _brandAppService.GetByIdAsync(id);
         }
+
+        [HttpDelete]
+        public Task<bool> Delete(Brand brand)
+        {
+            return _brandAppService.Delete(brand);
+        }
+
+        [HttpPut]
+        public Task<Brand> UpdateAsync(Brand brand)
+        {
+            return _brandAppService.UpdateAsync(brand);
+        }
+
+        [HttpPost]
+        public Task<Brand> CreateAsync(Brand brand)
+        {
+            return _brandAppService.CreateAsync(brand);
+        }
     }
 }

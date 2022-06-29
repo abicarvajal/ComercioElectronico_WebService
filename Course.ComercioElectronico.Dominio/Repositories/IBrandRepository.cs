@@ -1,4 +1,5 @@
 ﻿using Course.ComercioElectronico.Dominio.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Course.ComercioElectronico.Infraestructura.Repositories
 {
@@ -6,5 +7,6 @@ namespace Course.ComercioElectronico.Infraestructura.Repositories
     {
         Task<ICollection<Brand>> GetAsync();
         Task<Brand> GetByIdAsync(Guid id);
+        
     }
 }

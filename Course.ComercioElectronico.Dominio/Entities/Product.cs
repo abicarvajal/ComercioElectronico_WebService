@@ -15,12 +15,12 @@ namespace Course.ComercioElectronico.Dominio.Entities
 
         public decimal Price { get; set; }
 
-        public ProductType ProductType { get; set; }
+        public ProductType? ProductType { get; set; }
 
         //esto nos ayuda a hacer el mapeo en la relacion de uno a muchos
         public string ProductTypeId { get; set; }
 
-        public Brand Brand { get; set; }
+        public Brand? Brand { get; set; }
 
         //esto nos ayuda a hacer el mapeo en la relacion de uno a muchos
         public string BrandId { get; set; }

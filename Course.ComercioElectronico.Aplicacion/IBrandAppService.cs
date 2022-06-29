@@ -6,5 +6,8 @@ namespace Course.ComercioElectronico.Aplicacion
     {
         Task<ICollection<Brand>> GetAsync();
         Task<Brand> GetByIdAsync(string id);
+        Task<Brand> UpdateAsync(Brand brand);
+        Task<bool> Delete(Brand brand);
+        Task<Brand> CreateAsync(Brand brand);
     }
 }

@@ -29,5 +29,23 @@ namespace Course.ComercioElectronico.Aplicacion.Services
         {
             return repository.GetByIdAsync(id);
         }
+
+        public async Task<Product> UpdateAsync(Product product)
+        {
+            await repository.UpdateAsync(product);
+            return await GetByIdAsync(product.Id);
+        }
+
+        public async Task<bool> Delete(Product product)
+        {
+            await repository.Delete(product);
+            return true;
+        }
+
+        public async Task<Product> CreateAsync(Product product)
+        {
+            await repository.CreateAsync(product);
+            return await GetByIdAsync(product.Id);
+        }
     }
 }

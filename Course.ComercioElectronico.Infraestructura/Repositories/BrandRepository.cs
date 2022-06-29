@@ -1,10 +1,6 @@
 ﻿using Course.ComercioElectronico.Dominio.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Course.ComercioElectronico.Infraestructura.Repositories
 {
@@ -26,5 +22,6 @@ namespace Course.ComercioElectronico.Infraestructura.Repositories
         {
             return await context.Brand.FindAsync(id);
         }
+
     }
 }

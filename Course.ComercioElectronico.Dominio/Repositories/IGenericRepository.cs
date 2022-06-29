@@ -28,6 +28,12 @@ namespace Course.ComercioElectronico.Dominio.Repositories
         /// <param name="id"></param>
         /// <returns></returns>
         Task<T> GetByIdAsync(Guid id);
+
+        Task Delete(T entity);
+
+        Task UpdateAsync(T entity);
+
+        Task CreateAsync(T entity);
     }
     
 }

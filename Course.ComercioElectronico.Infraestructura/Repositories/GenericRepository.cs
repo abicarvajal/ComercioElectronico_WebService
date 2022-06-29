@@ -18,6 +18,12 @@ namespace Course.ComercioElectronico.Infraestructura.Repositories
             this.context = context;
         }
 
+        public async Task Delete(T entity)
+        {
+            context.Set<T>().Remove(entity);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<ICollection<T>> GetAsync()
         {
             return await context.Set<T>().ToListAsync();
@@ -31,6 +37,18 @@ namespace Course.ComercioElectronico.Infraestructura.Repositories
         public async Task<T> GetByIdAsync(Guid id)
         {
             return await context.Set<T>().FindAsync(id);
+        }
+
+        public async Task CreateAsync(T entity)
+        {
+            context.Set<T>().AddAsync(entity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            context.Set<T>().Update(entity);
+            await context.SaveChangesAsync();
         }
     }
 }
