@@ -1,4 +1,5 @@
-﻿using Course.ComercioElectronico.Aplicacion;
+﻿using Course.ComercioElectronico.Aplicacion.DTOs;
+using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Course.ComercioElectronico.Dominio.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,34 +17,34 @@ namespace Course.ComercioElectronico.WebApi.Controllers
             this.productAplication = productAplication;
         }
 
-        [HttpPost]
-        public Task<Product> CreateAsync(Product product)
-        {
-            return productAplication.CreateAsync(product);
-        }
-
-        [HttpDelete]
-        public Task<bool> Delete(Product product)
-        {
-            return productAplication.Delete(product);
-        }
-
         [HttpGet]
-        public Task<ICollection<Product>> GetAsync()
+        public Task<ICollection<ProductDto>> GetAllAsync()
         {
-            return productAplication.GetAsync();
+            return productAplication.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public Task<Product> GetByIdAsync(Guid id)
+        public Task<ProductDto> GetByIdAsync(Guid id)
         {
             return productAplication.GetByIdAsync(id);
         }
 
-        [HttpPut]
-        public Task<Product> UpdateAsync(Product product)
+        [HttpPost]
+        public Task<ProductDto> CreateAsync(CreateProductDto product)
         {
-            return productAplication.UpdateAsync(product);
+            return productAplication.CreateAsync(product);
+        }
+
+        [HttpPut("{id}")]
+        public Task<ProductDto> UpdateAsync(CreateProductDto product,Guid id)
+        {
+            return productAplication.UpdateAsync(product,id);
+        }
+
+        [HttpDelete("{id}")]
+        public Task<bool> Delete(CreateProductDto product,Guid id)
+        {
+            return productAplication.Delete(product, id);
         }
     }
 }

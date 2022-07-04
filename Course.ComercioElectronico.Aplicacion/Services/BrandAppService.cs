@@ -1,4 +1,6 @@
-﻿using Course.ComercioElectronico.Dominio.Entities;
+﻿using Course.ComercioElectronico.Aplicacion.DTOs;
+using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
+using Course.ComercioElectronico.Dominio.Entities;
 using Course.ComercioElectronico.Dominio.Repositories;
 using System;
 using System.Collections.Generic;
@@ -19,32 +21,67 @@ namespace Course.ComercioElectronico.Aplicacion.Services
 
         }
 
-        public Task<ICollection<Brand>> GetAsync()
+        public async Task<BrandDto> UpdateAsync(BrandDto brandDto)
         {
-            return repository.GetAsync();
+            var newBrand = new Brand
+            {
+                Code = brandDto.Code,
+                Description = brandDto.Description,
+                CreationDate = brandDto.CreatedDate,
+                ModifiedDate = DateTime.Now
+            };
+            await repository.UpdateAsync(newBrand);
+            return await GetByIdDtoAsync(newBrand.Code);
         }
 
-        public Task<Brand> GetByIdAsync(string id)
+        public async Task<bool> Delete(BrandDto brandDto)
         {
-            return repository.GetByIdAsync(id);
-        }
-
-        public async Task<Brand> UpdateAsync(Brand brand)
-        {
-            await repository.UpdateAsync(brand);
-            return await GetByIdAsync(brand.Code);
-        }
-
-        public async Task<bool> Delete(Brand brand)
-        {
-            await repository.Delete(brand);
+            var newBrand = new Brand
+            {
+                Code = brandDto.Code,
+                Description = brandDto.Description,
+                CreationDate = brandDto.CreatedDate,
+                ModifiedDate = DateTime.Now
+            };
+            await repository.Delete(newBrand);
             return true;
         }
 
-        public async Task<Brand> CreateAsync(Brand brand)
+        public async Task<BrandDto> CreateAsync(CreateBrandDto brandDto)
         {
-            await repository.CreateAsync(brand);
-            return await GetByIdAsync(brand.Code);
+            var newBrand = new Brand
+            {
+                Code = brandDto.Code,
+                Description = brandDto.Description,
+                CreationDate = DateTime.Now
+            };
+            await repository.CreateAsync(newBrand);
+            return await GetByIdDtoAsync(newBrand.Code);
+        }
+
+        public async Task<ICollection<BrandDto>> GetAllAsync()
+        {
+            var query = await repository.GetAsync();
+
+            var result = query.Select(x => new BrandDto
+            {
+                Code = x.Code,
+                Description = x.Description,
+                CreatedDate = x.CreationDate
+            });
+
+            return result.ToList();
+        }
+
+        public async Task<BrandDto> GetByIdDtoAsync(string id)
+        {
+            var entity = await repository.GetByIdAsync(id);
+            return new BrandDto
+            {
+                Code = entity.Code,
+                Description = entity.Description,
+                CreatedDate = entity.CreationDate
+            };
         }
     }
 }

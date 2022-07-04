@@ -8,7 +8,7 @@ namespace Course.ComercioElectronico.Dominio.Entities.Base
 {
     public class BaseEntity
     {
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public DateTime CreationDate { get; set; }
 

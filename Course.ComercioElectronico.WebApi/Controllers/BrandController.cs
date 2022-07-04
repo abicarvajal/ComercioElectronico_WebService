@@ -1,4 +1,5 @@
-﻿using Course.ComercioElectronico.Aplicacion;
+﻿using Course.ComercioElectronico.Aplicacion.DTOs;
+using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Course.ComercioElectronico.Dominio.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,33 +18,34 @@ namespace Course.ComercioElectronico.WebApi.Controllers
         }
 
         [HttpGet]
-        public Task<ICollection<Brand>> GetAsync()
+        public Task<ICollection<BrandDto>> GetAllAsync()
         {
-            return _brandAppService.GetAsync();
+            return _brandAppService.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public Task<Brand> GetByIdAsync(string id)
+        public Task<BrandDto> GetByIdDtoAsync(string id)
         {
-            return _brandAppService.GetByIdAsync(id);
+            return _brandAppService.GetByIdDtoAsync(id);
         }
 
-        [HttpDelete]
-        public Task<bool> Delete(Brand brand)
+        [HttpPost]
+        public Task<BrandDto> CreateAsync(CreateBrandDto brand)
         {
-            return _brandAppService.Delete(brand);
+            return _brandAppService.CreateAsync(brand);
         }
 
         [HttpPut]
-        public Task<Brand> UpdateAsync(Brand brand)
+        public Task<BrandDto> UpdateAsync(BrandDto brand)
         {
             return _brandAppService.UpdateAsync(brand);
         }
 
-        [HttpPost]
-        public Task<Brand> CreateAsync(Brand brand)
+        [HttpDelete]
+        public Task<bool> Delete(BrandDto brand)
         {
-            return _brandAppService.CreateAsync(brand);
+            return _brandAppService.Delete(brand);
         }
+
     }
 }

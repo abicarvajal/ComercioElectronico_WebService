@@ -1,6 +1,9 @@
-﻿using Course.ComercioElectronico.Dominio.Entities;
+﻿using Course.ComercioElectronico.Aplicacion.DTOs;
+using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
+using Course.ComercioElectronico.Dominio.Entities;
 using Course.ComercioElectronico.Dominio.Repositories;
 using Course.ComercioElectronico.Infraestructura;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,39 +16,95 @@ namespace Course.ComercioElectronico.Aplicacion.Services
     {
         protected IGenericRepository<Product> repository { get; set; }
 
-
         public ProductAppService(IGenericRepository<Product> repositorio)
         {
             this.repository = repositorio;
 
         }
 
-        public Task<ICollection<Product>> GetAsync()
+        public async Task<ICollection<ProductDto>> GetAllAsync()
         {
-            return repository.GetAsync();
+            var query = repository.GetQueryable();
+            var result = query.Where(x=> x.IsDeleted == false).Select(x => new ProductDto
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Price = x.Price,
+                Description = x.Description,
+                ProductyTypeId = x.ProductType.Description,
+                BrandId = x.Brand.Description
+            });
+
+            return await result.ToListAsync();
         }
 
-        public Task<Product> GetByIdAsync(Guid id)
+        public async Task<ProductDto> GetByIdAsync(Guid id)
         {
-            return repository.GetByIdAsync(id);
+            var query = repository.GetQueryable();
+            query = query.Where(x => x.Id == id);
+            var result = query.Select(x => new ProductDto
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Price = x.Price,
+                Description = x.Description,
+                ProductyTypeId = x.ProductType.Description,
+                BrandId = x.Brand.Description
+            });
+
+            return await result.SingleOrDefaultAsync();
         }
 
-        public async Task<Product> UpdateAsync(Product product)
+        public async Task<ProductDto> CreateAsync(CreateProductDto productDto)
         {
-            await repository.UpdateAsync(product);
-            return await GetByIdAsync(product.Id);
+            var newProduct = new Product
+            {
+                Id = Guid.NewGuid(),
+                Name= productDto.Name,
+                Description = productDto.Description,
+                Price = productDto.Price,
+                CreationDate = DateTime.Now,
+                BrandId = productDto.BrandId,
+                ProductTypeId = productDto.ProductyTypeId
+            };
+            await repository.CreateAsync(newProduct);
+            return await GetByIdAsync(newProduct.Id);
         }
 
-        public async Task<bool> Delete(Product product)
+        public async Task<ProductDto> UpdateAsync(CreateProductDto productDto, Guid id)
         {
-            await repository.Delete(product);
+            var newProduct = await repository.GetByIdAsync(id);
+            newProduct.Name = productDto.Name;
+            newProduct.Description = productDto.Description;
+            newProduct.Price = productDto.Price;
+            newProduct.ProductTypeId = productDto.ProductyTypeId;
+            newProduct.BrandId = productDto.BrandId;
+            newProduct.ModifiedDate = DateTime.Now;
+            await repository.UpdateAsync(newProduct);
+            return await GetByIdAsync(id);
+        }
+
+        public async Task<bool> Delete(CreateProductDto productDto, Guid id)
+        {
+            var newProduct = await repository.GetByIdAsync(id);
+            newProduct.IsDeleted = true;
+            
+            await repository.UpdateAsync(newProduct);
             return true;
         }
 
-        public async Task<Product> CreateAsync(Product product)
+        public async Task<ICollection<ProductDto>> GetListAsync(int limit = 10, int offset = 0)
         {
-            await repository.CreateAsync(product);
-            return await GetByIdAsync(product.Id);
+            var result = await repository.GetListAsync(limit,offset);
+            return result.Select(x => new ProductDto()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                Price = x.Price,
+                BrandId = x.BrandId,
+                ProductyTypeId = x.ProductTypeId
+            }).ToList();
         }
     }
 }

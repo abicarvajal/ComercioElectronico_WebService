@@ -50,5 +50,10 @@ namespace Course.ComercioElectronico.Infraestructura.Repositories
             context.Set<T>().Update(entity);
             await context.SaveChangesAsync();
         }
+
+        public IQueryable<T> GetQueryable()
+        {
+            return context.Set<T>().AsQueryable();
+        }
     }
 }

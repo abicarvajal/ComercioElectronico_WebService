@@ -1,5 +1,6 @@
 using Course.ComercioElectronico.Aplicacion;
 using Course.ComercioElectronico.Aplicacion.Services;
+using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Course.ComercioElectronico.Dominio.Repositories;
 using Course.ComercioElectronico.Infraestructura;
 using Course.ComercioElectronico.Infraestructura.Repositories;

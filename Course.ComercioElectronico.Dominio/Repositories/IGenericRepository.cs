@@ -10,30 +10,51 @@ namespace Course.ComercioElectronico.Dominio.Repositories
     public interface IGenericRepository<T> where T : BaseEntity
     {
         /// <summary>
-        /// Listar todos los objetos de la entidad
+        /// Get all objects of an entity
         /// </summary>
         /// <returns></returns>
         Task<ICollection<T>> GetAsync();
 
         /// <summary>
-        /// Obtener el objeto enviando un ID de tipo string
+        /// Get an object by string ID
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
         Task<T> GetByIdAsync(string code);
 
         /// <summary>
-        /// Obtener el objeto enviando un ID de tipo Guid
+        /// Get an object by Guid ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         Task<T> GetByIdAsync(Guid id);
 
+        /// <summary>
+        /// Delete an object
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         Task Delete(T entity);
 
+        /// <summary>
+        /// Update an object
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         Task UpdateAsync(T entity);
 
+        /// <summary>
+        /// Create an object
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         Task CreateAsync(T entity);
+
+        /// <summary>
+        /// Get a query to use and implement filters
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<T> GetQueryable();
     }
     
 }
