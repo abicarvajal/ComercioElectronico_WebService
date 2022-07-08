@@ -55,5 +55,43 @@ namespace Course.ComercioElectronico.Infraestructura.Repositories
         {
             return context.Set<T>().AsQueryable();
         }
+
+        //public async Task<ResultPagination<T>> GetListAsync(string search = "",int limit = 10, int offset = 0, string sort = "Name", string order = "asc")
+        //{
+        //    var query = GetQueryable();
+        //    //Filtrando los eliminados
+        //    query = query.Where(x => x.IsDeleted == false);
+        //    //1. Total
+        //    var total = await query.CountAsync();
+        //    //2. Pagination
+        //    query = query
+        //        .Skip(offset)
+        //        .Take(limit);
+        //    //3. Order
+        //    //if (!string.IsNullOrEmpty(sort))
+        //    //{
+        //    //    switch (sort.ToUpper())
+        //    //    {
+        //    //        case "Name":
+        //    //            query = query.OrderBy(x => x.Name);
+        //    //            break;
+        //    //        case "Price":
+        //    //            query = query.OrderBy(x => x.Price);
+        //    //            break;
+        //    //        default:
+        //    //            throw new ArgumentException($"The parameter sort {sort} not support");
+        //    //            break;
+        //    //    }
+        //    //}
+
+        //    //return await context.Set<T>()
+        //    //    .Take(limit)
+        //    //    .Skip(offset)
+        //    //    .ToListAsync();
+        //    var result = new ResultPagination<T>();
+        //    result.Total = total;
+            
+        //    return result;
+        //}
     }
 }

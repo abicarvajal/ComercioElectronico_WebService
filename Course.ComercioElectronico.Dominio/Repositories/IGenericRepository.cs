@@ -55,6 +55,13 @@ namespace Course.ComercioElectronico.Dominio.Repositories
         /// </summary>
         /// <returns></returns>
         IQueryable<T> GetQueryable();
+
+    }
+
+    public class ResultPagination<T>
+    {
+        public int Total { get; set; }  
+        public ICollection<T> Items { get; set; } = new List<T>();
     }
     
 }

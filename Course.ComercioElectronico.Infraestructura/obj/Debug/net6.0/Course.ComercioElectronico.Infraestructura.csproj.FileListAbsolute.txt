@@ -1,4 +1,5 @@
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\bin\Debug\net6.0\Course.ComercioElectronico.Infraestructura.deps.json
+C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\bin\Debug\net6.0\Course.ComercioElectronico.Infraestructura.runtimeconfig.json
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\bin\Debug\net6.0\Course.ComercioElectronico.Infraestructura.dll
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\bin\Debug\net6.0\Course.ComercioElectronico.Infraestructura.pdb
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\bin\Debug\net6.0\Course.ComercioElectronico.Dominio.dll
@@ -12,6 +13,5 @@ C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioEle
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\obj\Debug\net6.0\Course.ComercioElectronico.Infraestructura.dll
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\obj\Debug\net6.0\refint\Course.ComercioElectronico.Infraestructura.dll
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\obj\Debug\net6.0\Course.ComercioElectronico.Infraestructura.pdb
-C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\obj\Debug\net6.0\ref\Course.ComercioElectronico.Infraestructura.dll
-C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\bin\Debug\net6.0\Course.ComercioElectronico.Infraestructura.runtimeconfig.json
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\obj\Debug\net6.0\Course.ComercioElectronico.Infraestructura.genruntimeconfig.cache
+C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.Infraestructura\obj\Debug\net6.0\ref\Course.ComercioElectronico.Infraestructura.dll

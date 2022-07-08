@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Course.ComercioElectronico.Dominio\Course.ComercioElectronico.Dominio.csproj" />
     <ProjectReference Include="..\Course.ComercioElectronico.Infraestructura\Course.ComercioElectronico.Infraestructura.csproj" />
   </ItemGroup>

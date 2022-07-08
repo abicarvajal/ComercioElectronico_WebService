@@ -1,6 +1,7 @@
 ﻿using Course.ComercioElectronico.Aplicacion.DTOs;
 using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Course.ComercioElectronico.Dominio.Entities;
+using Course.ComercioElectronico.Dominio.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +46,13 @@ namespace Course.ComercioElectronico.WebApi.Controllers
         public Task<bool> Delete(CreateProductDto product,Guid id)
         {
             return productAplication.Delete(product, id);
+        }
+
+        [HttpGet]
+        [Route("search")]
+        public Task<ResultPagination<ProductDto>> GetListAsync(string search = "", int limit = 10, int offset = 0, string sort = "Name", string order = "asc")
+        {
+            return productAplication.GetListAsync(search, limit, offset, sort, order);
         }
     }
 }

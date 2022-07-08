@@ -1,4 +1,5 @@
-﻿using Course.ComercioElectronico.Aplicacion.DTOs;
+﻿using AutoMapper;
+using Course.ComercioElectronico.Aplicacion.DTOs;
 using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Course.ComercioElectronico.Dominio.Entities;
 using Course.ComercioElectronico.Dominio.Repositories;
@@ -15,11 +16,12 @@ namespace Course.ComercioElectronico.Aplicacion.Services
     public class ProductAppService : IProductAppService
     {
         protected IGenericRepository<Product> repository { get; set; }
+        private readonly IMapper mapper;
 
-        public ProductAppService(IGenericRepository<Product> repositorio)
+        public ProductAppService(IGenericRepository<Product> repositorio,IMapper mapper)
         {
             this.repository = repositorio;
-
+            this.mapper = mapper;
         }
 
         public async Task<ICollection<ProductDto>> GetAllAsync()
@@ -40,6 +42,7 @@ namespace Course.ComercioElectronico.Aplicacion.Services
 
         public async Task<ProductDto> GetByIdAsync(Guid id)
         {
+            //Esto esta bien con proyeccion de LINQ
             var query = repository.GetQueryable();
             query = query.Where(x => x.Id == id);
             var result = query.Select(x => new ProductDto
@@ -57,16 +60,21 @@ namespace Course.ComercioElectronico.Aplicacion.Services
 
         public async Task<ProductDto> CreateAsync(CreateProductDto productDto)
         {
-            var newProduct = new Product
-            {
-                Id = Guid.NewGuid(),
-                Name= productDto.Name,
-                Description = productDto.Description,
-                Price = productDto.Price,
-                CreationDate = DateTime.Now,
-                BrandId = productDto.BrandId,
-                ProductTypeId = productDto.ProductyTypeId
-            };
+            //var newProduct = new Product
+            //{
+            //    Id = Guid.NewGuid(),
+            //    Name= productDto.Name,
+            //    Description = productDto.Description,
+            //    Price = productDto.Price,
+            //    CreationDate = DateTime.Now,
+            //    BrandId = productDto.BrandId,
+            //    ProductTypeId = productDto.ProductyTypeId
+            //};
+
+            //Con el automapper
+            var newProduct = mapper.Map<Product>(productDto);
+            newProduct.CreationDate = DateTime.Now;
+
             await repository.CreateAsync(newProduct);
             return await GetByIdAsync(newProduct.Id);
         }
@@ -93,10 +101,48 @@ namespace Course.ComercioElectronico.Aplicacion.Services
             return true;
         }
 
-        public async Task<ICollection<ProductDto>> GetListAsync(int limit = 10, int offset = 0)
+        public async Task<ResultPagination<ProductDto>> GetListAsync(string? search = "", int limit = 10, int offset = 0, string sort = "Name", string order = "asc")
         {
-            var result = await repository.GetListAsync(limit,offset);
-            return result.Select(x => new ProductDto()
+            var query = repository.GetQueryable();
+
+            //Filtrando los eliminados
+            query = query.Where(x => x.IsDeleted == false);
+
+            //Search
+            if (!string.IsNullOrEmpty(search))
+            {
+                //Filter multi-fields
+                query = query.Where(
+                        x => x.Name.ToUpper().Contains(search));
+                        //|| x.Code.ToUpper().StartsWith(search);
+            }
+
+            //1. Total
+            var total = await query.CountAsync();
+            //2. Pagination
+            query = query
+                .Skip(offset)
+                .Take(limit);
+
+            //3. Order
+            if (!string.IsNullOrEmpty(sort))
+            {
+                switch (sort.ToUpper())
+                {
+                    case "NAME":
+                        query = query.OrderBy(x => x.Name);
+                        break;
+                    case "PRICE":
+                        query = query.OrderBy(x => x.Price);
+                        break;
+                    default:
+                        throw new ArgumentException($"The parameter sort {sort} not support");
+                        break;
+                }
+            }
+
+            //var result = await repository.GetListAsync(limit,offset);
+            var queryDto = query.Select(x => new ProductDto()
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -104,7 +150,13 @@ namespace Course.ComercioElectronico.Aplicacion.Services
                 Price = x.Price,
                 BrandId = x.BrandId,
                 ProductyTypeId = x.ProductTypeId
-            }).ToList();
+            });
+
+            var items = await queryDto.ToListAsync();
+            var result = new ResultPagination<ProductDto>();
+            result.Total = total;
+            result.Items = items;
+            return result;
         }
     }
 }

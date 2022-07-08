@@ -1,5 +1,6 @@
 ﻿using Course.ComercioElectronico.Aplicacion.DTOs;
 using Course.ComercioElectronico.Dominio.Entities;
+using Course.ComercioElectronico.Dominio.Repositories;
 
 namespace Course.ComercioElectronico.Aplicacion.ServicesInterfaces
 {
@@ -10,6 +11,6 @@ namespace Course.ComercioElectronico.Aplicacion.ServicesInterfaces
         Task<ProductDto> UpdateAsync(CreateProductDto product, Guid id);
         Task<bool> Delete(CreateProductDto product, Guid id);
         Task<ProductDto> CreateAsync(CreateProductDto product);
-        Task<ICollection<ProductDto>> GetListAsync(int limit = 10, int offset = 0);
+        Task<ResultPagination<ProductDto>> GetListAsync(string? search = "", int limit = 10, int offset = 0, string sort = "Name", string order = "asc");
     }
 }
