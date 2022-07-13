@@ -1,10 +1,13 @@
 ﻿using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Course.ComercioElectronico.Dominio.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Course.ComercioElectronico.WebApi.Controllers
 {
+    //3. Establecer la autorizacion para los controladores que se desee
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductTypeController : ControllerBase, IProductTypeAppService
@@ -28,6 +31,7 @@ namespace Course.ComercioElectronico.WebApi.Controllers
             return productTypeAplication.Delete(productType);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         public Task<ICollection<ProductType>> GetAsync()
         {

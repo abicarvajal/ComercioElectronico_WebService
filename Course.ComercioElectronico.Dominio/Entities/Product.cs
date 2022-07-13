@@ -24,5 +24,10 @@ namespace Course.ComercioElectronico.Dominio.Entities
 
         //esto nos ayuda a hacer el mapeo en la relacion de uno a muchos
         public string BrandId { get; set; }
+
+        //public Product()
+        //{
+        //    CreationDate = DateTime.Now;
+        //}
     }
 }

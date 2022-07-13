@@ -7,7 +7,11 @@ using Course.ComercioElectronico.Dominio.Repositories;
 using Course.ComercioElectronico.Infraestructura;
 using Course.ComercioElectronico.Infraestructura.Dependencies;
 using Course.ComercioElectronico.Infraestructura.Repositories;
+using Course.ComercioElectronico.WebApi.Controllers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +34,21 @@ builder.Services.AddAplication(builder.Configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["JWT:Audience"],
+        ValidIssuer = builder.Configuration["JWT:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+    };
+});
+
+builder.Services.Configure<JwtConfiguration>(builder.Configuration.GetSection("JWT"));
 
 //Inyectar o configurar las dependencias
 //ICatalogoRepositorio => CatalogoRepositorio
@@ -66,6 +85,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//2.Añadir el midleware
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -70,3 +70,6 @@ C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioEle
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\obj\Debug\net6.0\Course.ComercioElectronico.WebApi.pdb
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\obj\Debug\net6.0\Course.ComercioElectronico.WebApi.genruntimeconfig.cache
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\obj\Debug\net6.0\ref\Course.ComercioElectronico.WebApi.dll
+C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Auth0.Core.dll
+C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Auth0.ManagementApi.dll

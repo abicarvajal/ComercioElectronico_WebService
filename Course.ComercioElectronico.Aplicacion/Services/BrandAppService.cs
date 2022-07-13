@@ -1,4 +1,5 @@
-﻿using Course.ComercioElectronico.Aplicacion.DTOs;
+﻿using AutoMapper;
+using Course.ComercioElectronico.Aplicacion.DTOs;
 using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Course.ComercioElectronico.Dominio.Entities;
 using Course.ComercioElectronico.Dominio.Repositories;
@@ -13,12 +14,12 @@ namespace Course.ComercioElectronico.Aplicacion.Services
     public class BrandAppService : IBrandAppService
     {
         protected IGenericRepository<Brand> repository { get; set; }
+        private readonly IMapper mapper;
 
-
-        public BrandAppService(IGenericRepository<Brand> repositorio)
+        public BrandAppService(IGenericRepository<Brand> repositorio, IMapper mapper)
         {
             this.repository = repositorio;
-
+            this.mapper = mapper;
         }
 
         public async Task<BrandDto> UpdateAsync(BrandDto brandDto)
@@ -49,12 +50,20 @@ namespace Course.ComercioElectronico.Aplicacion.Services
 
         public async Task<BrandDto> CreateAsync(CreateBrandDto brandDto)
         {
-            var newBrand = new Brand
-            {
-                Code = brandDto.Code,
-                Description = brandDto.Description,
-                CreationDate = DateTime.Now
-            };
+            #region Proyeccion
+            //var newBrand = new Brand
+            //{
+            //    Code = brandDto.Code,
+            //    Description = brandDto.Description,
+            //    CreationDate = DateTime.Now
+            //};
+            #endregion
+
+            #region Automapper
+            var newBrand = mapper.Map<Brand>(brandDto);
+            newBrand.CreationDate = DateTime.Now;
+            #endregion
+
             await repository.CreateAsync(newBrand);
             return await GetByIdDtoAsync(newBrand.Code);
         }

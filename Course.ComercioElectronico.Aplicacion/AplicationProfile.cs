@@ -16,6 +16,10 @@ namespace Course.ComercioElectronico.Aplicacion
             //CreateMap<Origen, Destino>
             CreateMap<ProductDto, Product>();
             CreateMap<ProductTypeDto, ProductType>();
+            CreateMap<BrandDto, Brand>();
+
+            CreateMap<CreateProductDto, ProductDto>();
+            CreateMap<CreateBrandDto, BrandDto>();
         }
     }
 }

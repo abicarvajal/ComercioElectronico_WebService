@@ -60,6 +60,7 @@ namespace Course.ComercioElectronico.Aplicacion.Services
 
         public async Task<ProductDto> CreateAsync(CreateProductDto productDto)
         {
+            //Con proyecciones
             //var newProduct = new Product
             //{
             //    Id = Guid.NewGuid(),
@@ -71,9 +72,11 @@ namespace Course.ComercioElectronico.Aplicacion.Services
             //    ProductTypeId = productDto.ProductyTypeId
             //};
 
-            //Con el automapper
+            #region Con el automapper
             var newProduct = mapper.Map<Product>(productDto);
+            newProduct.Id = Guid.NewGuid();
             newProduct.CreationDate = DateTime.Now;
+            #endregion
 
             await repository.CreateAsync(newProduct);
             return await GetByIdAsync(newProduct.Id);

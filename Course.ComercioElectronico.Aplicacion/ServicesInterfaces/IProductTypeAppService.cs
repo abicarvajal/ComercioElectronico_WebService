@@ -13,5 +13,8 @@ namespace Course.ComercioElectronico.Aplicacion.ServicesInterfaces
         //using DTO
         //Task<ICollection<ProductTypeDto>> GetAsync();
         //Task<ProductTypeDto> GetByIdAsync(string code);
+        //Task<ProductTypeDto> UpdateAsync(ProductTypeDto brand);
+        //Task<bool> Delete(ProductTypeDto brand);
+        //Task<ProductTypeDto> CreateAsync(CreateProductTypeDto brand);
     }
 }
