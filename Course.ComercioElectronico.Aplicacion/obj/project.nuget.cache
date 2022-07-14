@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "nwFRXiKO0Jt45VNLzqDYFcQFCiWv/Mlhl0qpYe+s/r9ih/dkCVLC0+X6M3WzMib8XjtdJ8lNo20nccOh73e3Tw==",
+  "dgSpecHash": "QumiFlyE/xzDiJtZ7cEYn3Bl/0pMc1Jl5jMc5oQXMQXr6rM6FQkv/ZUNn3e+RY+9tMdBUlhiXuEwcMk+FFQbDw==",
   "success": true,
   "projectFilePath": "C:\\Users\\abita\\source\\repos\\Course.ComercioElectronico.WebApi\\Course.ComercioElectronico.Aplicacion\\Course.ComercioElectronico.Aplicacion.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\abita\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\abita\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\abita\\.nuget\\packages\\fluentvalidation\\11.1.0\\fluentvalidation.11.1.0.nupkg.sha512",
+    "C:\\Users\\abita\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.1.0\\fluentvalidation.dependencyinjectionextensions.11.1.0.nupkg.sha512",
     "C:\\Users\\abita\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\abita\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\abita\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",

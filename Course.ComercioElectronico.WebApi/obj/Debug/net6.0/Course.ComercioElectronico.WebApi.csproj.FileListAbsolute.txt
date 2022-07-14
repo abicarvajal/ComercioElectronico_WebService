@@ -73,3 +73,5 @@ C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioEle
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Auth0.Core.dll
 C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\Auth0.ManagementApi.dll
+C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\abita\source\repos\Course.ComercioElectronico.WebApi\Course.ComercioElectronico.WebApi\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll

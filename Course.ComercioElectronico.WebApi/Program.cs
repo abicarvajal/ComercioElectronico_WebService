@@ -11,6 +11,7 @@ using Course.ComercioElectronico.WebApi.Controllers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,6 +47,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidIssuer = builder.Configuration["JWT:Issuer"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
     };
+});
+
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("EsEcuatoriano", policy => policy.RequireClaim("Ecuatoriano"));
+    options.AddPolicy("GrupoAuth", policy => 
+    { 
+        policy.RequireClaim("Ecuatoriano");
+        policy.RequireClaim(ClaimTypes.Role, "Admin");
+    }
+    );
+    options.AddPolicy("Ubicacion", policy => policy.RequireClaim("Ubicacion"));
 });
 
 builder.Services.Configure<JwtConfiguration>(builder.Configuration.GetSection("JWT"));

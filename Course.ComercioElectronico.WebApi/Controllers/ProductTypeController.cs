@@ -31,13 +31,16 @@ namespace Course.ComercioElectronico.WebApi.Controllers
             return productTypeAplication.Delete(productType);
         }
 
-        [Authorize(Roles ="Admin")]
+        //[Authorize(Roles ="Admin")]
+        [Authorize(Policy = "GrupoAuth")]
+        //[Authorize(Policy = "EsEcuatoriano")]
         [HttpGet]
         public Task<ICollection<ProductType>> GetAsync()
         {
             return productTypeAplication.GetAsync();
         }
 
+        [Authorize(Policy = "EsEcuatoriano")]
         [HttpGet("{code}")]
         public Task<ProductType> GetByIdAsync(string code)
         {

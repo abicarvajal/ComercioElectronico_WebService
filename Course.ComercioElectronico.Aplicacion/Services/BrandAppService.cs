@@ -3,6 +3,7 @@ using Course.ComercioElectronico.Aplicacion.DTOs;
 using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Course.ComercioElectronico.Dominio.Entities;
 using Course.ComercioElectronico.Dominio.Repositories;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,13 @@ namespace Course.ComercioElectronico.Aplicacion.Services
     {
         protected IGenericRepository<Brand> repository { get; set; }
         private readonly IMapper mapper;
+        private readonly IValidator<CreateBrandDto> validator;
 
-        public BrandAppService(IGenericRepository<Brand> repositorio, IMapper mapper)
+        public BrandAppService(IGenericRepository<Brand> repositorio, IMapper mapper, IValidator<CreateBrandDto> validator)
         {
             this.repository = repositorio;
             this.mapper = mapper;
+            this.validator = validator;
         }
 
         public async Task<BrandDto> UpdateAsync(BrandDto brandDto)
@@ -58,6 +61,8 @@ namespace Course.ComercioElectronico.Aplicacion.Services
             //    CreationDate = DateTime.Now
             //};
             #endregion
+
+            await validator.ValidateAndThrowAsync(brandDto);
 
             #region Automapper
             var newBrand = mapper.Map<Brand>(brandDto);
