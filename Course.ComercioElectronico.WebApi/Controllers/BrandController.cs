@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Course.ComercioElectronico.WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BrandController : ControllerBase, IBrandAppService

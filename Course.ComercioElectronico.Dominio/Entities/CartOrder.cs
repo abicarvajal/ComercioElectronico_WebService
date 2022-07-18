@@ -13,8 +13,8 @@ namespace Course.ComercioElectronico.Dominio.Entities
 
         public string DeliveryMethodId { get; set; }
 
-        private readonly List<CartItemOrder> _productDetail = new List<CartItemOrder>();
+        private readonly List<CartItemOrder>? _productDetail = new List<CartItemOrder>();
 
-        public IReadOnlyCollection<CartItemOrder> ProductDetail => _productDetail;
+        public IReadOnlyCollection<CartItemOrder>? ProductDetail => _productDetail;
     }
 }

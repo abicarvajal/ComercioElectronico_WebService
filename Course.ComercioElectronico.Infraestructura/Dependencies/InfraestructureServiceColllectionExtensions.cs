@@ -24,6 +24,9 @@ namespace Course.ComercioElectronico.Infraestructura.Dependencies
             services.AddTransient<IBrandRepository, BrandRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            //
+            services.AddTransient<IOrderRepository, OrderRepository>();
             return services;
         }
     }

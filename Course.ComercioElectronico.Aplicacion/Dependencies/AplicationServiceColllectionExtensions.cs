@@ -24,6 +24,8 @@ namespace Course.ComercioElectronico.Aplicacion.Dependencies
             services.AddValidatorsFromAssemblyContaining<ProductValidation>();
             //
             services.AddValidatorsFromAssemblyContaining<DeliveryMethodValidation>();
+            
+            services.AddTransient<IOrderAppService, OrderAppService>();
 
             //Automapper: Add all profiles of this project
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

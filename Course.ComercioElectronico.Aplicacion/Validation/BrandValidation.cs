@@ -13,11 +13,11 @@ namespace Course.ComercioElectronico.Aplicacion.Validation
     {
         public BrandValidation()
         {
-            RuleFor(r=>r.Code).Cascade(CascadeMode.StopOnFirstFailure)
+            RuleFor(r => r.Code)
                 .NotEmpty()
-                .NotNull()
+                .NotNull();
                 //Regex validation numbers, letters, -
-                .Matches("^[a-zA-Z0-9-]*$");
+                //.Matches("^[a-zA-Z0-9-]*$");
             RuleFor(r => r.Description)
                 .NotNull()
                 .NotEmpty()

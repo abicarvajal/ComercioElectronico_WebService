@@ -12,7 +12,15 @@ namespace Course.ComercioElectronico.Aplicacion.Validation
     {
         public DeliveryMethodValidation()
         {
+            RuleFor(r => r.Code)
+                .NotEmpty()
+                .NotNull();
 
+            RuleFor(r => r.Description)
+                .NotNull()
+                .NotEmpty()
+                .MaximumLength(256)
+                .MinimumLength(5);
         }
     }
 }
