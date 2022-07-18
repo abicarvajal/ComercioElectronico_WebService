@@ -4,6 +4,7 @@ using Course.ComercioElectronico.Infraestructura;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Course.ComercioElectronico.Infraestructura.Migrations
 {
     [DbContext(typeof(ComercioElectronicoDBContext))]
-    partial class ComercioElectronicoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220718152148_AddCartOrderEntityConfiguration")]
+    partial class AddCartOrderEntityConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

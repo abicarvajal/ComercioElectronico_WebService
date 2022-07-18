@@ -30,7 +30,7 @@ namespace Course.ComercioElectronico.Infraestructura.EntityConfigurations
                 .IsRequired()
                 .HasColumnType("decimal(10,2)");
 
-            //Relacion de 1 a muchos Vrand y productType
+            //Relacion de 1 a muchos Brand y ProductType
             builder.HasOne(b => b.ProductType)
                 .WithMany()
                 .HasForeignKey(b => b.ProductTypeId);

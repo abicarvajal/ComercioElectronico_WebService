@@ -4,6 +4,7 @@ using Course.ComercioElectronico.Infraestructura;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Course.ComercioElectronico.Infraestructura.Migrations
 {
     [DbContext(typeof(ComercioElectronicoDBContext))]
-    partial class ComercioElectronicoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220716050359_addDeliveryMethodEntityandConfiguration")]
+    partial class addDeliveryMethodEntityandConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,64 +89,6 @@ namespace Course.ComercioElectronico.Infraestructura.Migrations
                     b.HasKey("Code");
 
                     b.ToTable("Brand", (string)null);
-                });
-
-            modelBuilder.Entity("Course.ComercioElectronico.Dominio.Entities.CartItemOrder", b =>
-                {
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CartOrderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Code");
-
-                    b.HasIndex("CartOrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartItemOrder", (string)null);
-                });
-
-            modelBuilder.Entity("Course.ComercioElectronico.Dominio.Entities.CartOrder", b =>
-                {
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeliveryMethodId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(4)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Code");
-
-                    b.HasIndex("DeliveryMethodId");
-
-                    b.ToTable("CartOrder", (string)null);
                 });
 
             modelBuilder.Entity("Course.ComercioElectronico.Dominio.Entities.DeliveryMethod", b =>
@@ -248,36 +192,6 @@ namespace Course.ComercioElectronico.Infraestructura.Migrations
                     b.ToTable("ProductType", (string)null);
                 });
 
-            modelBuilder.Entity("Course.ComercioElectronico.Dominio.Entities.CartItemOrder", b =>
-                {
-                    b.HasOne("Course.ComercioElectronico.Dominio.Entities.CartOrder", "CartOrder")
-                        .WithMany("ProductDetail")
-                        .HasForeignKey("CartOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Course.ComercioElectronico.Dominio.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CartOrder");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Course.ComercioElectronico.Dominio.Entities.CartOrder", b =>
-                {
-                    b.HasOne("Course.ComercioElectronico.Dominio.Entities.DeliveryMethod", "DeliveryMethod")
-                        .WithMany()
-                        .HasForeignKey("DeliveryMethodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DeliveryMethod");
-                });
-
             modelBuilder.Entity("Course.ComercioElectronico.Dominio.Entities.Product", b =>
                 {
                     b.HasOne("Course.ComercioElectronico.Dominio.Entities.Brand", "Brand")
@@ -295,11 +209,6 @@ namespace Course.ComercioElectronico.Infraestructura.Migrations
                     b.Navigation("Brand");
 
                     b.Navigation("ProductType");
-                });
-
-            modelBuilder.Entity("Course.ComercioElectronico.Dominio.Entities.CartOrder", b =>
-                {
-                    b.Navigation("ProductDetail");
                 });
 #pragma warning restore 612, 618
         }
