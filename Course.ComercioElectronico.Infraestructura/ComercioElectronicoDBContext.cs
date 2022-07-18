@@ -17,6 +17,7 @@ namespace Course.ComercioElectronico.Infraestructura
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductType> ProductType { get; set; }
         public DbSet<Brand> Brand { get; set; }
+        public DbSet<DeliveryMethod> DeliveryMethod { get; set; }
 
         public ComercioElectronicoDBContext(DbContextOptions options): base(options)
         {

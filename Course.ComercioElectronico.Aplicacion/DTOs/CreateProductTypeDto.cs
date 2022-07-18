@@ -8,6 +8,7 @@ namespace Course.ComercioElectronico.Aplicacion.DTOs
 {
     public class CreateProductTypeDto
     {
+        public string Code { get; set; }
         public string Description { get; set; }
     }
 }

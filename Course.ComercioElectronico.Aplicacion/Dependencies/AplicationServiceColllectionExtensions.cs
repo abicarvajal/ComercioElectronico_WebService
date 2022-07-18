@@ -16,9 +16,14 @@ namespace Course.ComercioElectronico.Aplicacion.Dependencies
             services.AddTransient<IProductAppService, ProductAppService>();
             services.AddTransient<IProductTypeAppService, ProductTypeAppService>();
             services.AddTransient<IBrandAppService, BrandAppService>();
+            services.AddTransient<IDeliveryMethodAppService, DeliveryMethodAppService>();
 
             //Add validations
             services.AddValidatorsFromAssemblyContaining<BrandValidation>();
+            services.AddValidatorsFromAssemblyContaining<ProductTypeValidation>();
+            services.AddValidatorsFromAssemblyContaining<ProductValidation>();
+            //
+            services.AddValidatorsFromAssemblyContaining<DeliveryMethodValidation>();
 
             //Automapper: Add all profiles of this project
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

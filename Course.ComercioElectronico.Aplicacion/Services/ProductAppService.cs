@@ -95,8 +95,9 @@ namespace Course.ComercioElectronico.Aplicacion.Services
             return await GetByIdAsync(id);
         }
 
-        public async Task<bool> Delete(CreateProductDto productDto, Guid id)
+        public async Task<bool> Delete(Guid id)
         {
+            //Borrado logico
             var newProduct = await repository.GetByIdAsync(id);
             newProduct.IsDeleted = true;
             

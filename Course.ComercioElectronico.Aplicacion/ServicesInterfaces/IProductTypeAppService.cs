@@ -10,11 +10,10 @@ namespace Course.ComercioElectronico.Aplicacion.ServicesInterfaces
         Task<ProductType> UpdateAsync(ProductType productType);
         Task<bool> Delete(ProductType productType);
         Task<ProductType> CreateAsync(ProductType productType);
-        //using DTO
-        //Task<ICollection<ProductTypeDto>> GetAsync();
-        //Task<ProductTypeDto> GetByIdAsync(string code);
+        //Task<ICollection<ProductTypeDto>> GetAllAsync();
+        //Task<ProductTypeDto> GetByIdDtoAsync(string id);
         //Task<ProductTypeDto> UpdateAsync(ProductTypeDto brand);
-        //Task<bool> Delete(ProductTypeDto brand);
+        //Task<bool> Delete(string id);
         //Task<ProductTypeDto> CreateAsync(CreateProductTypeDto brand);
     }
 }

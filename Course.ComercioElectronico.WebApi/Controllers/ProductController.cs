@@ -43,9 +43,9 @@ namespace Course.ComercioElectronico.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public Task<bool> Delete(CreateProductDto product,Guid id)
+        public Task<bool> Delete(Guid id)
         {
-            return productAplication.Delete(product, id);
+            return productAplication.Delete(id);
         }
 
         [HttpGet]

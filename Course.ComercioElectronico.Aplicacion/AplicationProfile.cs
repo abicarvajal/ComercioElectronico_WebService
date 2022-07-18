@@ -20,6 +20,10 @@ namespace Course.ComercioElectronico.Aplicacion
 
             CreateMap<CreateProductDto, ProductDto>();
             CreateMap<CreateBrandDto, BrandDto>();
+            //18072022
+            CreateMap<CreateDeliveryMethodDto, DeliveryMethodDto>();
+            CreateMap<DeliveryMethodDto, DeliveryMethod>();
+            //CreateMap<CreateProductTypeDto, ProductTypeDto>();
         }
     }
 }

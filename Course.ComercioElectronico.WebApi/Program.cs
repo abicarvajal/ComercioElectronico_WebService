@@ -18,7 +18,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+// Add services to the container.
+builder.Services.AddControllers(options =>
+{
+    //Aplicar filter globalmente a todos los controller
+    options.Filters.Add<ApiExceptionFilterAttribute>();
+})
+;
 
 //Add services to container
 builder.Services.AddDomain(builder.Configuration);
@@ -89,6 +96,10 @@ builder.Services.AddTransient(typeof(ICatalogoAplicacion), typeof(CatalogoAplica
 
 builder.Services.AddTransient<IClienteRepositorio, ClienteRepositorio>();
 
+//Add Cors
+builder.Services.AddCors();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -100,7 +111,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//2.Añadir el midleware
+//CORS Global Policy. Middleware
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)
+    .AllowCredentials());
+
+//2.Add Middleware that uses authentication schema registered  
 app.UseAuthentication();
 
 app.UseAuthorization();

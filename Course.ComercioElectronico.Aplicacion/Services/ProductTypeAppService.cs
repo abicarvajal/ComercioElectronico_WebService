@@ -1,7 +1,11 @@
-﻿using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
+﻿using AutoMapper;
+using Course.ComercioElectronico.Aplicacion.DTOs;
+using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Course.ComercioElectronico.Dominio.Entities;
 using Course.ComercioElectronico.Dominio.Repositories;
 using Course.ComercioElectronico.Infraestructura.Repositories;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
