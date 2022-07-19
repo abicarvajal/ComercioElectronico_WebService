@@ -39,5 +39,11 @@ namespace Course.ComercioElectronico.WebApi.Controllers
         {
             return _orderAppService.GetByIdAsync(id);
         }
+
+        [HttpPut]
+        public Task<OrderDto> UpdateAsync(UpdateOrderDto createOrderDto, string id)
+        {
+            return _orderAppService.UpdateAsync(createOrderDto, id);
+        }
     }
 }

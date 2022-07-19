@@ -8,5 +8,7 @@ namespace Course.ComercioElectronico.Infraestructura.Repositories
         IQueryable<CartItemOrder> GetQueryableItems();
         Task CreateCartOrderAsync(CartOrder cartOrder);
         Task CreateCartItemOrderAsync(CartItemOrder cartItemOrder);
+        Task UpdateCartOrder(CartOrder cartOrder);
+        Task UpdateCartItemOrder(CartItemOrder cartItemOrder);
     }
 }

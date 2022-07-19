@@ -27,6 +27,7 @@ namespace Course.ComercioElectronico.Infraestructura.Dependencies
 
             //
             services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<ICalculationRepository, CalculationRepository>();
             return services;
         }
     }

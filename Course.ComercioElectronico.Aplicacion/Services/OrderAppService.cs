@@ -3,6 +3,7 @@ using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Course.ComercioElectronico.Dominio.Entities;
 using Course.ComercioElectronico.Dominio.Repositories;
 using Course.ComercioElectronico.Infraestructura.Repositories;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace Course.ComercioElectronico.Aplicacion.Services
     public class OrderAppService : IOrderAppService
     {
         protected IOrderRepository repository { get; set; }
+        private readonly IValidator<CreateOrderDto> validator;
 
-        public OrderAppService(IOrderRepository repository)
+        public OrderAppService(IOrderRepository repository, IValidator<CreateOrderDto> validator)
         {
             this.repository = repository;
+            this.validator = validator;
         }
 
         public async Task<ICollection<OrderDto>> GetAllAsync()
@@ -29,8 +32,18 @@ namespace Course.ComercioElectronico.Aplicacion.Services
                     {
                         DeliveryMethodId = x.DeliveryMethodId,
                         Code = x.Code,
-                        DeliveryMethodName = x.DeliveryMethod.Description
-                    }
+                        DeliveryMethodName = x.DeliveryMethod.Description,
+                        CartItems = (List<CartItemDto>)x.ProductDetail.Where(y => y.CartOrderId == x.Code)
+                            .Select(item => new CartItemDto
+                            {
+                                Code = item.Code,
+                                ProductId = item.ProductId,
+                                ProductName = item.Product.Name,
+                                Quantity = item.Quantity,
+                                CartOrderId = item.CartOrderId
+
+                            })
+                }
                 );
             
             return result.ToList();
@@ -52,11 +65,7 @@ namespace Course.ComercioElectronico.Aplicacion.Services
                 );
             return result.ToList();
         }
-        /// <summary>
-        /// Method to create and Order with its item products
-        /// </summary>
-        /// <param name="createrderDto"></param>
-        /// <returns></returns>
+        
         public async Task<OrderDto> CreateAsync(CreateOrderDto createrderDto)
         {
             var newOrder = new CartOrder
@@ -87,7 +96,7 @@ namespace Course.ComercioElectronico.Aplicacion.Services
             return await GetByIdAsync(createrderDto.Code);
             
         }
-
+        
         public async Task<OrderDto> GetByIdAsync(string id)
         {
             var query = this.repository.GetQueryable();
@@ -96,11 +105,48 @@ namespace Course.ComercioElectronico.Aplicacion.Services
                 {
                     DeliveryMethodId = x.DeliveryMethodId,
                     Code = x.Code,
-                    DeliveryMethodName = x.DeliveryMethod.Description
+                    DeliveryMethodName = x.DeliveryMethod.Description,
+                    CartItems = (List<CartItemDto>)x.ProductDetail.Where(y => y.CartOrderId == x.Code)
+                    .Select(item => new CartItemDto
+                    {
+                        Code = item.Code,
+                        ProductId= item.ProductId,
+                        ProductName = item.Product.Name,
+                        Quantity = item.Quantity,
+                        CartOrderId = item.CartOrderId
+
+                    })
                 }
                 );
 
             return await result.SingleOrDefaultAsync();
+        }
+
+        public async Task<OrderDto> UpdateAsync(UpdateOrderDto createOrderDto, string id)
+        {
+            var query = this.repository.GetQueryable();
+            var cartOrder = await query.Where(x => x.Code == id).SingleOrDefaultAsync();
+            cartOrder.DeliveryMethodId = createOrderDto.DeliveryMethodId;
+            cartOrder.ModifiedDate = DateTime.Now;
+
+            foreach (var item in createOrderDto.ItemsToCart)
+            {
+                var newCartItemOrder = new CartItemOrder
+                {
+                    Code = item.Code,
+                    ProductId = item.ProductId,
+                    Quantity = item.Quantity,
+                    CartOrderId = id,
+                    //CreationDate = item.,
+                    ModifiedDate = DateTime.Now,
+                    IsDeleted = false
+                };
+
+                await repository.UpdateCartItemOrder(newCartItemOrder);
+            }
+
+            await repository.UpdateCartOrder(cartOrder);
+            return await GetByIdAsync(id);
         }
     }
 }

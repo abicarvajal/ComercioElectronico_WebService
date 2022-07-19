@@ -9,11 +9,12 @@ namespace Course.ComercioElectronico.Aplicacion.DTOs
 {
     public class OrderDto
     {
-
         public string Code { get; set; }
 
         public string DeliveryMethodId { get; set; }
 
         public string DeliveryMethodName { get; set; }
+
+        public List<CartItemDto> CartItems { get; set; }
     }
 }

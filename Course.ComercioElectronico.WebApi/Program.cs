@@ -77,22 +77,8 @@ builder.Services.Configure<JwtConfiguration>(builder.Configuration.GetSection("J
 //Aspnet es el tercer actor que crea las dependencias
 //Configurar dependencias. Se lo realiza con IServiceCollection
 
-//Forma Generica
+//Generic Form
 builder.Services.AddTransient<ICatalogoRepositorio,CatalogoRepositorio>();
-
-//builder.Services.AddTransient<IProductRepository, ProductRepository>();
-//builder.Services.AddTransient<IProductAppService, ProductAppService>();
-
-//builder.Services.AddTransient<IProductTypeRepository, ProductTypeRepository>();
-//builder.Services.AddTransient<IProductTypeAppService, ProductTypeAppService>();
-
-//builder.Services.AddTransient<IBrandRepository, BrandRepository>();
-//builder.Services.AddTransient<IBrandAppService, BrandAppService>();
-
-//Forma Metodos
-builder.Services.AddTransient(typeof(ICatalogoAplicacion), typeof(CatalogoAplicacion));
-//Agrego repositorio generico
-//builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddTransient<IClienteRepositorio, ClienteRepositorio>();
 

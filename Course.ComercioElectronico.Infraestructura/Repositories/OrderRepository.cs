@@ -40,5 +40,17 @@ namespace Course.ComercioElectronico.Infraestructura.Repositories
 
             await context.SaveChangesAsync();
         }
+
+        public async Task UpdateCartOrder(CartOrder cartOrder)
+        {
+            context.Set<CartOrder>().Update(cartOrder);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task UpdateCartItemOrder(CartItemOrder cartItemOrder)
+        {
+            context.Set<CartItemOrder>().Update(cartItemOrder);
+            await context.SaveChangesAsync();
+        }
     }
 }
