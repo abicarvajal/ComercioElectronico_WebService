@@ -1,5 +1,6 @@
 ﻿using Course.ComercioElectronico.Aplicacion.DTOs;
 using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
+using Course.ComercioElectronico.Dominio.Entities;
 using Course.ComercioElectronico.Dominio.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,11 +35,22 @@ namespace Course.ComercioElectronico.WebApi.Controllers
         {
             return _orderAppService.GetAllItemsAsync();
         }
+        [HttpGet("{id}/brand/{brandId}")]
+        public Task<List<IEnumerable<CartItemDto>>> GetByBrandAndId(string id, string brandId)
+        {
+            return _orderAppService.GetByBrandAndId(id, brandId);
+        }
 
         [HttpGet("{id}")]
         public Task<OrderDto> GetByIdAsync(string id)
         {
             return _orderAppService.GetByIdAsync(id);
+        }
+
+        [HttpGet("{id}/productType/{productTypeId}")]
+        public Task<List<IEnumerable<CartItemDto>>> GetByProductTypeAndId(string id, string productTypeId)
+        {
+            return _orderAppService.GetByProductTypeAndId(id, productTypeId);
         }
 
         [HttpGet("OrderPagination")]

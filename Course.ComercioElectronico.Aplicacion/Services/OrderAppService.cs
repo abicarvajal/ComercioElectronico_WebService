@@ -6,7 +6,6 @@ using Course.ComercioElectronico.Infraestructura.Repositories;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace Course.ComercioElectronico.Aplicacion.Services
 {
     public class OrderAppService : IOrderAppService
@@ -164,11 +163,10 @@ namespace Course.ComercioElectronico.Aplicacion.Services
                     ProductId = item.ProductId,
                     Quantity = item.Quantity,
                     CartOrderId = id,
-                    //CreationDate = item.,
                     ModifiedDate = DateTime.Now,
                     IsDeleted = false
                 };
-
+                
                 await repository.UpdateCartItemOrder(newCartItemOrder);
             }
 
@@ -204,7 +202,6 @@ namespace Course.ComercioElectronico.Aplicacion.Services
                 }
             }
 
-            //var result = await repository.GetListAsync(limit,offset);
             var queryDto = query.Select(x => new OrderDto()
             {
                 DeliveryMethodId = x.DeliveryMethodId,
@@ -226,6 +223,47 @@ namespace Course.ComercioElectronico.Aplicacion.Services
             var result = new ResultPagination<OrderDto>();
             result.Total = total;
             result.Items = items;
+            return result;
+        }
+
+        public async Task<List<IEnumerable<CartItemDto>>> GetByBrandAndId(string id, string brandId)
+        {
+            var query = this.repository.GetQueryable();
+            
+            var result = await query.Where(x=> x.IsDeleted == false && x.Code == id)
+                .Select(x=> x.ProductDetail
+                .Where(y=>y.Product.BrandId ==brandId)
+                .Select(y=>new CartItemDto
+                {
+                    Code=y.Code,
+                    ProductId = y.ProductId,
+                    ProductName = y.Product.Name,
+                    Quantity = y.Quantity,
+                    CartOrderId = y.CartOrderId
+                }))
+                .ToListAsync();
+
+            return result;
+
+        }
+
+        public async Task<List<IEnumerable<CartItemDto>>> GetByProductTypeAndId(string id, string productTypeId)
+        {
+            var query = this.repository.GetQueryable();
+
+            var result = await query.Where(x => x.IsDeleted == false && x.Code == id)
+                .Select(x => x.ProductDetail
+                .Where(y => y.Product.ProductTypeId == productTypeId)
+                .Select(y => new CartItemDto
+                {
+                    Code = y.Code,
+                    ProductId = y.ProductId,
+                    ProductName = y.Product.Name,
+                    Quantity = y.Quantity,
+                    CartOrderId = y.CartOrderId
+                }))
+                .ToListAsync();
+
             return result;
         }
     }

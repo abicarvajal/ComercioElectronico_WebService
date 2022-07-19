@@ -1,4 +1,5 @@
 ﻿using Course.ComercioElectronico.Aplicacion.DTOs;
+using Course.ComercioElectronico.Dominio.Entities;
 using Course.ComercioElectronico.Dominio.Repositories;
 using System;
 using System.Collections.Generic;
@@ -55,5 +56,22 @@ namespace Course.ComercioElectronico.Aplicacion.ServicesInterfaces
         /// <param name="order"></param>
         /// <returns></returns>
         Task<ResultPagination<OrderDto>> GetListAsync(int limit = 10, int offset = 0, string sort = "Code", string order = "asc");
+
+        /// <summary>
+        /// Get filtering by brandId and OrderId
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="brandId"></param>
+        /// <returns></returns>
+        Task<List<IEnumerable<CartItemDto>>> GetByBrandAndId(string id, string brandId);
+
+        /// <summary>
+        /// Get filtering by ProductTypeId and OrderId
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="productTypeId"></param>
+        /// <returns></returns>
+        Task<List<IEnumerable<CartItemDto>>> GetByProductTypeAndId(string id, string productTypeId);
+
     }
 }
