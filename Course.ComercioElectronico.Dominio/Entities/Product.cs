@@ -17,17 +17,15 @@ namespace Course.ComercioElectronico.Dominio.Entities
 
         public ProductType? ProductType { get; set; }
 
-        //esto nos ayuda a hacer el mapeo en la relacion de uno a muchos
+        //Relationship one-to-many
         public string ProductTypeId { get; set; }
 
         public Brand? Brand { get; set; }
 
-        //esto nos ayuda a hacer el mapeo en la relacion de uno a muchos
+        //Mapping of relationship one-to-many
         public string BrandId { get; set; }
 
-        //public Product()
-        //{
-        //    CreationDate = DateTime.Now;
-        //}
+        public int Stock { get; set; }
+
     }
 }

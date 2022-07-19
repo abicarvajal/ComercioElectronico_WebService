@@ -9,7 +9,6 @@ namespace Course.ComercioElectronico.Dominio.Repositories
 {
     public interface ICalculationRepository
     {
-        IQueryable<CartOrder> GetQueryable();
         IQueryable<CartItemOrder> GetQueryableItems();
     }
 }

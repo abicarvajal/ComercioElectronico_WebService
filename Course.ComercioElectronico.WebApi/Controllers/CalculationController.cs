@@ -1,4 +1,5 @@
-﻿using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
+﻿using Course.ComercioElectronico.Aplicacion.DTOs;
+using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace Course.ComercioElectronico.WebApi.Controllers
         }
 
         [HttpGet]
-        public Task<decimal> CalculateTotalOfOrder(string id)
+        public Task<DetailOrderDto> CalculateTotalOfOrder(string id)
         {
             return _calculationAppService.CalculateTotalOfOrder(id);
         }

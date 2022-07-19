@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Course.ComercioElectronico.Aplicacion.DTOs;
 
 namespace Course.ComercioElectronico.Aplicacion.ServicesInterfaces
 {
@@ -13,6 +9,6 @@ namespace Course.ComercioElectronico.Aplicacion.ServicesInterfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<decimal> CalculateTotalOfOrder(string id);
+        Task<DetailOrderDto> CalculateTotalOfOrder(string id);
     }
 }

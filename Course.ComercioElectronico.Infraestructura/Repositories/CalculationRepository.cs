@@ -17,11 +17,6 @@ namespace Course.ComercioElectronico.Infraestructura.Repositories
             this.context = context;
         }
 
-        public IQueryable<CartOrder> GetQueryable()
-        {
-            return context.Set<CartOrder>().AsQueryable();
-        }
-
         public IQueryable<CartItemOrder> GetQueryableItems()
         {
             return context.Set<CartItemOrder>().AsQueryable();

@@ -1,5 +1,6 @@
 ﻿using Course.ComercioElectronico.Aplicacion.DTOs;
 using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
+using Course.ComercioElectronico.Dominio.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,12 @@ namespace Course.ComercioElectronico.WebApi.Controllers
         public Task<OrderDto> GetByIdAsync(string id)
         {
             return _orderAppService.GetByIdAsync(id);
+        }
+
+        [HttpGet("OrderPagination")]
+        public Task<ResultPagination<OrderDto>> GetListAsync(int limit = 10, int offset = 0, string sort = "Code", string order = "asc")
+        {
+            return _orderAppService.GetListAsync(limit, offset, sort, order);
         }
 
         [HttpPut]

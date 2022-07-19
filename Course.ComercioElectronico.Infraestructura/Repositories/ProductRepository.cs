@@ -14,14 +14,10 @@ namespace Course.ComercioElectronico.Infraestructura.Repositories
 
         public ProductRepository(ComercioElectronicoDBContext context)
         {
-            //context = new ComercioElectronicoDBContext();
             this.context = context;
         }
         public async Task<ICollection<Product>> GetAsync()
         {
-            //var lista = new List<Catalogo> { new Catalogo { Codigo = "Foo", Nombre = "bar" } };
-            //lista.Add( new Catalogo { Codigo = "Foo", Nombre = "bar" });
-            //return await Task.FromResult(lista);
             return await context.Product.ToListAsync();
         }
 

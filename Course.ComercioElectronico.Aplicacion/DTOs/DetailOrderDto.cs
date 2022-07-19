@@ -9,5 +9,13 @@ namespace Course.ComercioElectronico.Aplicacion.DTOs
     public class DetailOrderDto
     {
         public decimal total { get; set; }
+        public List<ItemDetailDto> itemDetail { get; set; }
+    }
+
+    public class ItemDetailDto
+    {
+        public string ProductName { get; set; }
+        public decimal ProductPrice { get; set; }
+        public int Quantity { get; set; }
     }
 }

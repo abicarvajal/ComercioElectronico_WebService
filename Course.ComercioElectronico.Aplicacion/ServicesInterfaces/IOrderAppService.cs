@@ -1,4 +1,5 @@
 ﻿using Course.ComercioElectronico.Aplicacion.DTOs;
+using Course.ComercioElectronico.Dominio.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,12 +39,21 @@ namespace Course.ComercioElectronico.Aplicacion.ServicesInterfaces
 
         //Task<bool> Delete(string id);
         /// <summary>
-        /// Method to create and Order with its item products
+        /// Create and Order with its item products
         /// </summary>
         /// <param name="createrderDto"></param>
         /// <returns></returns>
         Task<OrderDto> CreateAsync(CreateOrderDto createrderDto);
 
-        //Task<ResultPagination<ProductDto>> GetListAsync(string? search = "", int limit = 10, int offset = 0, string sort = "Name", string order = "asc");
+        /// <summary>
+        /// Pagination of all orders
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="limit"></param>
+        /// <param name="offset"></param>
+        /// <param name="sort"></param>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        Task<ResultPagination<OrderDto>> GetListAsync(int limit = 10, int offset = 0, string sort = "Code", string order = "asc");
     }
 }

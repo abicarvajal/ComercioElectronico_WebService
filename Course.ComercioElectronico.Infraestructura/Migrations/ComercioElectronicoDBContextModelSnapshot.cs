@@ -214,6 +214,9 @@ namespace Course.ComercioElectronico.Infraestructura.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(4)");
 
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");

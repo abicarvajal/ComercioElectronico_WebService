@@ -13,5 +13,6 @@ namespace Course.ComercioElectronico.Aplicacion.DTOs
         public decimal Price { get; set; }
         public string ProductyTypeId { get; set; }
         public string BrandId { get; set; }
+        public int Stock { get; set; }
     }
 }
