@@ -44,25 +44,6 @@ namespace Course.ComercioElectronico.WebApi.Controllers
             claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
             claims.Add(new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()));
             claims.Add(new Claim("UserName", input.UserName));
-            //var claims = new[] {
-            //        new Claim(JwtRegisteredClaimNames.Sub, userTest),
-            //        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            //        new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-            //        new Claim("UserName", userTest),
-            //        //Agregar 2 claims
-            //        //new Claim("UserId", "123456"),
-            //        //new Claim("Nombre","Abigail"),
-            //        //Opc2
-            //        //new Claim("Roles","admin"),
-            //        //new Claim("Roles","support"),
-            //        //new Claim("Email", user.Email)
-            //        //Other...
-            //        new Claim(ClaimTypes.Role, "Admin", "Support", "Purchase"),
-            //        new Claim("",true.ToString()),
-            //        new Claim("", true.ToString()),
-            //        new Claim("Seguro","123"),
-
-            //    };
 
             foreach (var item in user.rol)
             {

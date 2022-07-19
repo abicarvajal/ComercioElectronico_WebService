@@ -1,10 +1,12 @@
 ﻿using Course.ComercioElectronico.Aplicacion.DTOs;
 using Course.ComercioElectronico.Aplicacion.ServicesInterfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Course.ComercioElectronico.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CalculationController : ControllerBase, ICalculationAppService
