@@ -5,10 +5,10 @@ namespace Course.ComercioElectronico.Aplicacion.ServicesInterfaces
 {
     public interface IProductTypeAppService
     {
-        Task<ICollection<ProductType>> GetAsync();
+        Task<ICollection<ProductTypeDto>> GetAsync();
         Task<ProductType> GetByIdAsync(string code);
         Task<ProductType> UpdateAsync(ProductType productType);
-        Task<bool> Delete(ProductType productType);
+        Task<bool> Delete(string id);
         Task<ProductType> CreateAsync(ProductType productType);
         //Task<ICollection<ProductTypeDto>> GetAllAsync();
         //Task<ProductTypeDto> GetByIdDtoAsync(string id);

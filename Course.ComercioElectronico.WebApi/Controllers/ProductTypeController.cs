@@ -27,21 +27,21 @@ namespace Course.ComercioElectronico.WebApi.Controllers
         }
 
         [HttpDelete]
-        public Task<bool> Delete(ProductType productType)
+        public Task<bool> Delete(string id)
         {
-            return productTypeAplication.Delete(productType);
+            return productTypeAplication.Delete(id);
         }
 
         //[Authorize(Roles ="Admin")]
-        [Authorize(Policy = "GrupoAuth")]
+        //[Authorize(Policy = "GrupoAuth")]
         //[Authorize(Policy = "EsEcuatoriano")]
         [HttpGet]
-        public Task<ICollection<ProductType>> GetAsync()
+        public Task<ICollection<ProductTypeDto>> GetAsync()
         {
             return productTypeAplication.GetAsync();
         }
 
-        [Authorize(Policy = "EsEcuatoriano")]
+        //[Authorize(Policy = "EsEcuatoriano")]
         [HttpGet("{code}")]
         public Task<ProductType> GetByIdAsync(string code)
         {

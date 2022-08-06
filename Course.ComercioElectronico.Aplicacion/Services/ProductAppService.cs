@@ -34,7 +34,8 @@ namespace Course.ComercioElectronico.Aplicacion.Services
                 Price = x.Price,
                 Description = x.Description,
                 ProductyTypeId = x.ProductType.Description,
-                BrandId = x.Brand.Description
+                BrandId = x.Brand.Description,
+                Stock = x.Stock
             });
 
             return await result.ToListAsync();
@@ -52,7 +53,8 @@ namespace Course.ComercioElectronico.Aplicacion.Services
                 Price = x.Price,
                 Description = x.Description,
                 ProductyTypeId = x.ProductType.Description,
-                BrandId = x.Brand.Description
+                BrandId = x.Brand.Description,
+                Stock = x.Stock
             });
 
             return await result.SingleOrDefaultAsync();
@@ -61,21 +63,21 @@ namespace Course.ComercioElectronico.Aplicacion.Services
         public async Task<ProductDto> CreateAsync(CreateProductDto productDto)
         {
             //Con proyecciones
-            //var newProduct = new Product
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name= productDto.Name,
-            //    Description = productDto.Description,
-            //    Price = productDto.Price,
-            //    CreationDate = DateTime.Now,
-            //    BrandId = productDto.BrandId,
-            //    ProductTypeId = productDto.ProductyTypeId
-            //};
+            var newProduct = new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = productDto.Name,
+                Description = productDto.Description,
+                Price = productDto.Price,
+                CreationDate = DateTime.Now,
+                BrandId = productDto.BrandId,
+                ProductTypeId = productDto.ProductyTypeId
+            };
 
             #region Con el automapper
-            var newProduct = mapper.Map<Product>(productDto);
-            newProduct.Id = Guid.NewGuid();
-            newProduct.CreationDate = DateTime.Now;
+            //var newProduct = mapper.Map<Product>(productDto);
+            //newProduct.Id = Guid.NewGuid();
+            //newProduct.CreationDate = DateTime.Now;
             #endregion
 
             await repository.CreateAsync(newProduct);

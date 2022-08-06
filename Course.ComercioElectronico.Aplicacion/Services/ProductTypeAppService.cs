@@ -23,9 +23,17 @@ namespace Course.ComercioElectronico.Aplicacion.Services
             this.repository = repository;
         }
 
-        public Task<ICollection<ProductType>> GetAsync()
+        public async Task<ICollection<ProductTypeDto>> GetAsync()
         {
-            return repository.GetAsync();
+            var query = repository.GetQueryable();
+            var result = query.Where(x => x.IsDeleted == false).Select(x => new ProductTypeDto
+            {
+                Code = x.Code,
+                Description = x.Description,
+                CreatedDate = x.CreationDate
+            });
+
+            return await result.ToListAsync();
         }
 
         public Task<ProductType> GetByIdAsync(string code)
@@ -39,9 +47,13 @@ namespace Course.ComercioElectronico.Aplicacion.Services
             return await GetByIdAsync(productType.Code);
         }
 
-        public async Task<bool> Delete(ProductType productType)
+        public async Task<bool> Delete(string id)
         {
-            await repository.Delete(productType);
+            //Borrado logico
+            var newProductType = await repository.GetByIdAsync(id);
+            newProductType.IsDeleted = true;
+
+            await repository.UpdateAsync(newProductType);
             return true;
         }
 
